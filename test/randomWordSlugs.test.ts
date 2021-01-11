@@ -1,8 +1,10 @@
-import randomWordSlugs, { RandomWordOptions } from "../index";
-import { Categories, PartsOfSpeech, WordList, wordList } from "../words";
+import { randomWordSlugs, RandomWordOptions, totalUniqueSlugs } from "../index";
+import { Categories, PartsOfSpeech, wordList } from "../words";
 
 const allAdjectives = wordList.adjective.map(({ word }) => word) as string[];
 const allNouns = wordList.noun.map(({ word }) => word) as string[];
+const numAdjectives = allAdjectives.length;
+const numNouns = allNouns.length;
 
 function checkWordInCategories<P extends PartsOfSpeech>(
   partOfSpeech: P,
@@ -114,5 +116,37 @@ describe("randomWordSlugs", () => {
     expect(allAdjectives.includes(second)).toBe(true);
     expect(third[0]).toBe(third[0].toLowerCase());
     expect(allNouns.includes(third)).toBe(true);
+  });
+});
+
+describe("totalUniqueSlugs", () => {
+  it("should tally up total slugs", () => {
+    const num = totalUniqueSlugs();
+    const actualTotal = numAdjectives * numAdjectives * numNouns;
+    expect(num).toBe(actualTotal);
+  });
+  it("should tally slugs in subset of categories", () => {
+    const num = totalUniqueSlugs(4, {
+      noun: ["animals", "people"],
+      adjective: ["colors", "appearance"],
+    });
+    const numAdjectives = wordList.adjective.filter(({ categories }) => {
+      for (let category of categories) {
+        if (category === "colors" || category === "appearance") {
+          return true;
+        }
+        return false;
+      }
+    }).length;
+    const numNouns = wordList.noun.filter(({ categories }) => {
+      for (let category of categories) {
+        if (category === "animals" || category === "people") {
+          return true;
+        }
+        return false;
+      }
+    }).length;
+    const actualTotal = numAdjectives ** 3 * numNouns;
+    expect(num).toBe(actualTotal);
   });
 });

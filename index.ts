@@ -1,5 +1,7 @@
 import { getWordsByCategory, PartsOfSpeech, Categories } from "./words";
 
+const DEFAULT_NUMBER_OF_WORDS = 3;
+
 interface FixedLengthArray<T extends any, L extends number> extends Array<T> {
   0: T;
   length: L;
@@ -21,11 +23,11 @@ export type RandomWordOptions<L extends number> = Partial<
   Options<PartsOfSpeech, L>
 >;
 
-function randomWordSlugs<N extends number>(
+export function randomWordSlugs<N extends number>(
   numberOfWords?: N,
   options?: Partial<Options<PartsOfSpeech, N>>
 ) {
-  const numWords = numberOfWords || 3;
+  const numWords = numberOfWords || DEFAULT_NUMBER_OF_WORDS;
   const defaultOptions: Options<PartsOfSpeech, typeof numWords> = {
     partsOfSpeech: getDefaultPartsOfSpeech(numWords),
     categories: {},
@@ -50,8 +52,6 @@ function randomWordSlugs<N extends number>(
 
   return formatter(words, opts.format);
 }
-
-export default randomWordSlugs;
 
 function getDefaultPartsOfSpeech<N extends number>(length: N) {
   const partsOfSpeech = [];
@@ -93,4 +93,19 @@ function formatter(arr: string[], format: Case) {
       return el[0].toUpperCase() + el.slice(1).toLowerCase();
     })
     .join(" ");
+}
+
+export function totalUniqueSlugs<N extends number>(
+  numberOfWords?: N,
+  categories?: RandomWordOptions<N>["categories"]
+) {
+  const numAdjectives = getWordsByCategory("adjective", categories?.adjective)
+    .length;
+  const numNouns = getWordsByCategory("noun", categories?.noun).length;
+  let combos = 1;
+  for (let i = 0; i < (numberOfWords || DEFAULT_NUMBER_OF_WORDS) - 1; i++) {
+    combos *= numAdjectives;
+  }
+  combos *= numNouns;
+  return combos;
 }
