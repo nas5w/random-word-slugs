@@ -17,6 +17,10 @@ type Options<T, L extends number> = {
   format: Format;
 };
 
+export type RandomWordOptions<L extends number> = Partial<
+  Options<PartsOfSpeech, L>
+>;
+
 function randomWordSlugs<N extends number>(
   numberOfWords?: N,
   options?: Partial<Options<PartsOfSpeech, N>>
@@ -66,7 +70,7 @@ function formatter(arr: string[], format: Format) {
     return arr
       .map((el, i) => {
         if (i === 0) return el.toLowerCase();
-        return el[0].toUpperCase + el.slice(1).toLowerCase();
+        return el[0].toUpperCase() + el.slice(1).toLowerCase();
       })
       .join("");
   }
