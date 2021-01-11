@@ -10,14 +10,13 @@ function checkWordInCategories<P extends PartsOfSpeech>(
   categories: Categories[P][]
 ) {
   const cats = new Set(categories);
-  let wordCategories: any[];
-
-  for (let w of wordList[partOfSpeech]) {
-    if (w.word === word) {
-      wordCategories = (w.categories as unknown) as any[];
-      break;
+  const wordCategories = (() => {
+    for (let w of wordList[partOfSpeech]) {
+      if (w.word === word) {
+        return w.categories;
+      }
     }
-  }
+  })();
 
   return wordCategories!.some((cat: any) => cats.has(cat));
 }
@@ -74,5 +73,16 @@ describe("randomWordSlugs", () => {
     expect(
       checkWordInCategories("noun", parts[2], options!.categories!.noun!)
     ).toBe(true);
+  });
+  test("should format as camelCase", () => {
+    const slug = randomWordSlugs(3, { format: "camelCase" });
+    const second = slug.match(/[A-Z].+?(?=[A-Z])/)![0];
+    const [first, third] = slug.split(second!);
+    expect(first[0]).toBe(first[0].toLowerCase());
+    expect(allAdjectives.includes(first)).toBe(true);
+    expect(second[0]).toBe(second[0].toUpperCase());
+    expect(allAdjectives.includes(second.toLowerCase())).toBe(true);
+    expect(third[0]).toBe(third[0].toUpperCase());
+    expect(allNouns.includes(third.toLowerCase())).toBe(true);
   });
 });
