@@ -1,0 +1,28 @@
+{
+  "name": "random-word-slugs",
+  "version": "0.0.1",
+  "description": "A random word slug generator pre-loaded with many words",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest --coverage",
+    "prepublish": "tsc"
+  },
+  "keywords": [
+    "random words",
+    "random slugs",
+    "slug",
+    "slug generator",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Nick Scialli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nas5w/random-word-slugs/issues"
+  },
+  "homepage": "https://github.com/nas5w/random-word-slygs#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
