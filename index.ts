@@ -19,11 +19,11 @@ type Options<T, L extends number> = {
   format: Case;
 };
 
-export type RandomWordOptions<L extends number> = Partial<
-  Options<PartsOfSpeech, L>
+export type RandomWordOptions<N extends number> = Partial<
+  Options<PartsOfSpeech, N>
 >;
 
-export function randomWordSlugs<N extends number>(
+export function generateSlug<N extends number>(
   numberOfWords?: N,
   options?: Partial<Options<PartsOfSpeech, N>>
 ) {
@@ -97,15 +97,25 @@ function formatter(arr: string[], format: Case) {
 
 export function totalUniqueSlugs<N extends number>(
   numberOfWords?: N,
-  categories?: RandomWordOptions<N>["categories"]
+  options?: RandomWordOptions<N>
 ) {
-  const numAdjectives = getWordsByCategory("adjective", categories?.adjective)
-    .length;
-  const numNouns = getWordsByCategory("noun", categories?.noun).length;
+  const numAdjectives = getWordsByCategory(
+    "adjective",
+    options?.categories?.adjective
+  ).length;
+  const numNouns = getWordsByCategory("noun", options?.categories?.noun).length;
+  const nums = {
+    adjective: numAdjectives,
+    noun: numNouns,
+  };
+
+  const numWords = numberOfWords || DEFAULT_NUMBER_OF_WORDS;
+  const partsOfSpeech =
+    options?.partsOfSpeech || getDefaultPartsOfSpeech(numWords);
+
   let combos = 1;
-  for (let i = 0; i < (numberOfWords || DEFAULT_NUMBER_OF_WORDS) - 1; i++) {
-    combos *= numAdjectives;
+  for (let i = 0; i < numWords; i++) {
+    combos *= nums[partsOfSpeech[i]];
   }
-  combos *= numNouns;
   return combos;
 }
