@@ -75,7 +75,7 @@ describe("randomWordSlugs", () => {
     ).toBe(true);
   });
   test("should format as camelCase", () => {
-    const slug = randomWordSlugs(3, { format: "camelCase" });
+    const slug = randomWordSlugs(3, { format: "camel" });
     const second = slug.match(/[A-Z].+?(?=[A-Z])/)![0];
     const [first, third] = slug.split(second!);
     expect(first[0]).toBe(first[0].toLowerCase());
@@ -84,5 +84,35 @@ describe("randomWordSlugs", () => {
     expect(allAdjectives.includes(second.toLowerCase())).toBe(true);
     expect(third[0]).toBe(third[0].toUpperCase());
     expect(allNouns.includes(third.toLowerCase())).toBe(true);
+  });
+  test("should format as Title Case", () => {
+    const slug = randomWordSlugs(3, { format: "title" });
+    const [first, second, third] = slug.split(" ");
+    expect(first[0]).toBe(first[0].toUpperCase());
+    expect(allAdjectives.includes(first.toLowerCase())).toBe(true);
+    expect(second[0]).toBe(second[0].toUpperCase());
+    expect(allAdjectives.includes(second.toLowerCase())).toBe(true);
+    expect(third[0]).toBe(third[0].toUpperCase());
+    expect(allNouns.includes(third.toLowerCase())).toBe(true);
+  });
+  test("should format as lower case", () => {
+    const slug = randomWordSlugs(3, { format: "lower" });
+    const [first, second, third] = slug.split(" ");
+    expect(first[0]).toBe(first[0].toLowerCase());
+    expect(allAdjectives.includes(first)).toBe(true);
+    expect(second[0]).toBe(second[0].toLowerCase());
+    expect(allAdjectives.includes(second)).toBe(true);
+    expect(third[0]).toBe(third[0].toLowerCase());
+    expect(allNouns.includes(third)).toBe(true);
+  });
+  test("should format as Sentence case", () => {
+    const slug = randomWordSlugs(3, { format: "sentence" });
+    const [first, second, third] = slug.split(" ");
+    expect(first[0]).toBe(first[0].toUpperCase());
+    expect(allAdjectives.includes(first.toLowerCase())).toBe(true);
+    expect(second[0]).toBe(second[0].toLowerCase());
+    expect(allAdjectives.includes(second)).toBe(true);
+    expect(third[0]).toBe(third[0].toLowerCase());
+    expect(allNouns.includes(third)).toBe(true);
   });
 });

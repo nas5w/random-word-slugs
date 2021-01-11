@@ -5,7 +5,7 @@ interface FixedLengthArray<T extends any, L extends number> extends Array<T> {
   length: L;
 }
 
-type Format = "kebabCase" | "camelCase" | "titleCase" | "lowercase";
+type Case = "kebab" | "camel" | "title" | "lower" | "sentence";
 
 type Options<T, L extends number> = {
   partsOfSpeech: FixedLengthArray<T, L>;
@@ -14,7 +14,7 @@ type Options<T, L extends number> = {
       [K in PartsOfSpeech]: Categories[K][];
     }
   >;
-  format: Format;
+  format: Case;
 };
 
 export type RandomWordOptions<L extends number> = Partial<
@@ -29,7 +29,7 @@ function randomWordSlugs<N extends number>(
   const defaultOptions: Options<PartsOfSpeech, typeof numWords> = {
     partsOfSpeech: getDefaultPartsOfSpeech(numWords),
     categories: {},
-    format: "kebabCase",
+    format: "kebab",
   };
   const opts: Options<PartsOfSpeech, typeof numWords> = {
     ...defaultOptions,
@@ -62,11 +62,11 @@ function getDefaultPartsOfSpeech<N extends number>(length: N) {
   return partsOfSpeech as FixedLengthArray<PartsOfSpeech, N>;
 }
 
-function formatter(arr: string[], format: Format) {
-  if (format === "kebabCase") {
+function formatter(arr: string[], format: Case) {
+  if (format === "kebab") {
     return arr.join("-").toLowerCase();
   }
-  if (format === "camelCase") {
+  if (format === "camel") {
     return arr
       .map((el, i) => {
         if (i === 0) return el.toLowerCase();
@@ -74,12 +74,23 @@ function formatter(arr: string[], format: Format) {
       })
       .join("");
   }
-  if (format === "lowercase") {
+  if (format === "lower") {
     return arr.join(" ").toLowerCase();
   }
+  if (format === "sentence") {
+    return arr
+      .map((el, i) => {
+        if (i === 0) {
+          return el[0].toUpperCase() + el.slice(1).toLowerCase();
+        }
+        return el;
+      })
+      .join(" ");
+  }
+
   return arr
     .map((el) => {
-      return el[0].toUpperCase + el.slice(1).toLowerCase();
+      return el[0].toUpperCase() + el.slice(1).toLowerCase();
     })
     .join(" ");
 }
