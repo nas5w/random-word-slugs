@@ -122,7 +122,6 @@ describe("generateSlug", () => {
 describe("totalUniqueSlugs", () => {
   it("should tally up total slugs", () => {
     const num = totalUniqueSlugs();
-    console.log(num);
     const actualTotal = numAdjectives * numAdjectives * numNouns;
     expect(num).toBe(actualTotal);
   });
