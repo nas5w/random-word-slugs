@@ -49,7 +49,7 @@ The `options` object can have any partial set of the following key/value pairs:
   format: "kebab" | "camel" | "sentence" | "lower" | "title",
   partsOfSpeech: ("adjective" | "noun")[],
   categories: {
-    adjective: ("colors" | "appearance" | etc...)[],
+    adjective: ("color" | "appearance" | etc...)[],
     noun: ("person" | "animals" | etc...)[]
   }
 }
@@ -64,7 +64,7 @@ const options = {
   format: "camel",
   partsOfSpeech: ["adjective", "noun", "adjective"],
   categories: {
-    adjective: ["colors", "appearance"],
+    adjective: ["color", "appearance"],
     noun: ["animals"],
   },
 };
@@ -83,7 +83,7 @@ const options: RandomWordOptions<3> = {
   format: "title",
   categories: {
     noun: ["animals", "places"],
-    adjective: ["colors", "emotions"],
+    adjective: ["color", "emotions"],
   },
   partsOfSpeech: ["adjective", "noun", "adjective"],
 };
@@ -144,7 +144,7 @@ import { totalUniqueSlugs } from "random-word-slugs";
 const totalSlugs = totalUniqueSlugs(4, {
   partsOfSpeech: ["adjective", "noun", "adjective", "noun"],
   categories: {
-    adjective: ["colors"],
+    adjective: ["color"],
     noun: ["animals"],
   },
 });
