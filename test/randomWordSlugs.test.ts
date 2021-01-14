@@ -25,7 +25,7 @@ function checkWordInCategories<P extends PartsOfSpeech>(
 
 function test(name: string, fn: () => void) {
   it(name, () => {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 1000; i++) {
       fn();
     }
   });
@@ -79,7 +79,8 @@ describe("generateSlug", () => {
   test("should format as camelCase", () => {
     const slug = generateSlug(3, { format: "camel" });
     const second = slug.match(/[A-Z].+?(?=[A-Z])/)![0];
-    const [first, third] = slug.split(second!);
+    const splitRegex = new RegExp(second + "(.+)");
+    const [first, third] = slug.split(splitRegex);
     expect(first[0]).toBe(first[0].toLowerCase());
     expect(allAdjectives.includes(first)).toBe(true);
     expect(second[0]).toBe(second[0].toUpperCase());
