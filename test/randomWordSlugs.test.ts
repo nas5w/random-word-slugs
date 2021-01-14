@@ -53,7 +53,7 @@ describe("generateSlug", () => {
     const options: RandomWordOptions<3> = {
       categories: {
         noun: ["animals", "education"],
-        adjective: ["colors", "appearance"],
+        adjective: ["color", "appearance"],
       },
     };
     const slug = generateSlug(3, options);
@@ -122,6 +122,7 @@ describe("generateSlug", () => {
 describe("totalUniqueSlugs", () => {
   it("should tally up total slugs", () => {
     const num = totalUniqueSlugs();
+    console.log(num);
     const actualTotal = numAdjectives * numAdjectives * numNouns;
     expect(num).toBe(actualTotal);
   });
@@ -129,12 +130,12 @@ describe("totalUniqueSlugs", () => {
     const num = totalUniqueSlugs(4, {
       categories: {
         noun: ["animals", "people"],
-        adjective: ["colors", "appearance"],
+        adjective: ["color", "appearance"],
       },
     });
     const numAdjectives = wordList.adjective.filter(({ categories }) => {
       for (let category of categories) {
-        if (category === "colors" || category === "appearance") {
+        if (category === "color" || category === "appearance") {
           return true;
         }
         return false;
