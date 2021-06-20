@@ -151,8 +151,8 @@ import { totalUniqueSlugs } from "random-word-slugs";
 const totalSlugs = totalUniqueSlugs(4, {
   partsOfSpeech: ["adjective", "noun", "adjective", "noun"],
   categories: {
-      adjective: ["color"],
-      noun: ["animals"],
+    adjective: ["color"],
+    noun: ["animals"],
   },
 });
 console.log(totalSlugs);
