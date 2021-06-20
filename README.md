@@ -50,7 +50,7 @@ The `options` object can have any partial set of the following key/value pairs:
   partsOfSpeech: ("adjective" | "noun")[],
   categories: {
     adjective: ("color" | "appearance" | etc...)[],
-    noun: ("person" | "animals" | etc...)[]
+    noun: ("people" | "animals" | etc...)[]
   }
 }
 ```
@@ -82,8 +82,8 @@ import { RandomWordOptions } from "random-word-slugs";
 const options: RandomWordOptions<3> = {
   format: "title",
   categories: {
-    noun: ["animals", "places"],
-    adjective: ["color", "emotions"],
+    noun: ["animals", "place"],
+    adjective: ["color", "personality"],
   },
   partsOfSpeech: ["adjective", "noun", "adjective"],
 };
@@ -117,10 +117,17 @@ Noun Categories:
 - religion
 - business
 - animals
-- transportation
 - thing
+- transportation
 - technology
 - place
+- profession
+- media
+- time
+- health
+- food
+- sports
+- science
 
 # Assessing the Combinatorics
 
@@ -142,11 +149,11 @@ You can also assess the combinatoric space if you have a different number of wor
 import { totalUniqueSlugs } from "random-word-slugs";
 
 const totalSlugs = totalUniqueSlugs(4, {
-  partsOfSpeech: ["adjective", "noun", "adjective", "noun"],
-  categories: {
-    adjective: ["color"],
-    noun: ["animals"],
-  },
+    partsOfSpeech: ["adjective", "noun", "adjective", "noun"],
+    categories: {
+        adjective: ["color"],
+        noun: ["animals"],
+    },
 });
 console.log(totalSlugs);
 // 1000
