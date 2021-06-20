@@ -149,11 +149,11 @@ You can also assess the combinatoric space if you have a different number of wor
 import { totalUniqueSlugs } from "random-word-slugs";
 
 const totalSlugs = totalUniqueSlugs(4, {
-    partsOfSpeech: ["adjective", "noun", "adjective", "noun"],
-    categories: {
-        adjective: ["color"],
-        noun: ["animals"],
-    },
+  partsOfSpeech: ["adjective", "noun", "adjective", "noun"],
+  categories: {
+      adjective: ["color"],
+      noun: ["animals"],
+  },
 });
 console.log(totalSlugs);
 // 1000
