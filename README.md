@@ -22,7 +22,7 @@ yarn add random-word-slugs
 
 # Usage
 
-The `random-word-slugs` package can be used without any parameters and defaults to a three-word, kebab-cased slug. **Currently, the default configuration has 15,660,175 unique slug combinations**.
+The `random-word-slugs` package can be used without any parameters and defaults to a three-word, kebab-cased slug. **Currently, the default configuration has 15,589,950 unique slug combinations**.
 
 ```javascript
 import { generateSlug } from "random-word-slugs";
