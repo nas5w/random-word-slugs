@@ -166,16 +166,16 @@ describe("totalUniqueSlugs", () => {
         if (category === "color" || category === "appearance") {
           return true;
         }
-        return false;
       }
+      return false;
     }).length;
     const numNouns = wordList.noun.filter(({ categories }) => {
       for (let category of categories) {
         if (category === "animals" || category === "people") {
           return true;
         }
-        return false;
       }
+      return false;
     }).length;
     const actualTotal = numAdjectives ** 3 * numNouns;
     expect(num).toBe(actualTotal);
