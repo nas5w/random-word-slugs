@@ -31,7 +31,7 @@ function test(name: string, fn: () => void) {
   });
 }
 
-describe("generateSlug", () => {
+describe("wordList", () => {
   // TODO: generalize this for any word types
   it("has no repeats", () => {
     const { noun, adjective } = wordList;
@@ -60,6 +60,9 @@ describe("generateSlug", () => {
       throw new Error(`Some words are repeated: ${JSON.stringify(repeats)}`);
     }
   });
+});
+
+describe("generateSlug", () => {
   test("generates three random kebab-cased words by default", () => {
     const slug = generateSlug();
     const parts = slug.split("-");
