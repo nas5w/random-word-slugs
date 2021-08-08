@@ -32,6 +32,34 @@ function test(name: string, fn: () => void) {
 }
 
 describe("generateSlug", () => {
+  // TODO: generalize this for any word types
+  it("has no repeats", () => {
+    const { noun, adjective } = wordList;
+    const allNouns = new Set<string>();
+    const repeats: {
+      noun: string[];
+      adjective: string[];
+    } = { noun: [], adjective: [] };
+    noun.forEach(({ word }) => {
+      if (allNouns.has(word)) {
+        repeats.noun.push(word);
+      } else {
+        allNouns.add(word);
+      }
+    });
+    const allAdjectives = new Set<string>();
+    adjective.forEach(({ word }) => {
+      if (allAdjectives.has(word)) {
+        repeats.adjective.push(word);
+      } else {
+        allAdjectives.add(word);
+      }
+    });
+
+    if (repeats.noun.length || repeats.adjective.length) {
+      throw new Error(`Some words are repeated: ${JSON.stringify(repeats)}`);
+    }
+  });
   test("generates three random kebab-cased words by default", () => {
     const slug = generateSlug();
     const parts = slug.split("-");
