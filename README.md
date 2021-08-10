@@ -32,7 +32,7 @@ console.log(slug);
 // "elegant-green-coat"
 ```
 
-The `generateSlug` function takes up to two arguments. The first argument is the `numberOfWords` in the slug (defaulting to three) and the secon argument is the package `options`. The following example makes use of both parameters and provides an option to title-case the output:
+The `generateSlug` function takes up to two arguments. The first argument is the `numberOfWords` in the slug (defaulting to three) and the second argument is the package `options`. The following example makes use of both parameters and provides an option to title-case the output:
 
 ```javascript
 const slug = generateSlug(4, { format: "title" });
