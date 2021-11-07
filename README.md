@@ -118,7 +118,7 @@ Noun Categories:
 - food
 - health
 - media
-- people
+- peopl
 - sports
 - technology
 - thing

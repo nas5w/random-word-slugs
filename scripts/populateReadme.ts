@@ -2,6 +2,8 @@ import fs from "fs";
 import { totalUniqueSlugs } from "../index";
 import { WordList, wordList } from "../words";
 
+console.log("Adding stats to README");
+
 // Populate slug count
 const combos = totalUniqueSlugs().toLocaleString("en-US");
 const readme = fs.readFileSync("./scripts/README_TEMPLATE.md", "utf-8");
