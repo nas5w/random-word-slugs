@@ -22,7 +22,7 @@ yarn add random-word-slugs
 
 # Usage
 
-The `random-word-slugs` package can be used without any parameters and defaults to a three-word, kebab-cased slug. **Currently, the default configuration has 25,454,007 unique slug combinations**.
+The `random-word-slugs` package can be used without any parameters and defaults to a three-word, kebab-cased slug. **Currently, the default configuration has {{uniqueCombinations}} unique slug combinations**.
 
 ```javascript
 import { generateSlug } from "random-word-slugs";
@@ -97,36 +97,11 @@ The `categories` option allows you to generate your random slug from a subset of
 
 Adjective Categories:
 
-- appearance
-- color
-- condition
-- personality
-- quantity
-- shapes
-- size
-- sounds
-- taste
-- touch
+{{adjectiveCategories}}
 
 Noun Categories:
 
-- animals
-- business
-- education
-- family
-- food
-- health
-- media
-- people
-- place
-- profession
-- religion
-- science
-- sports
-- technology
-- thing
-- time
-- transportation
+{{nounCategories}}
 
 # Assessing the Combinatorics
 

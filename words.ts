@@ -211,7 +211,7 @@ export const wordList = {
     { word: "mother", categories: ["people", "family"] },
     { word: "motherboard", categories: ["thing", "technology"] },
     { word: "motorcycle", categories: ["transportation"] },
-    { word: "mouse", categories: ["thing", "technology", "animal"] },
+    { word: "mouse", categories: ["thing", "technology", "animals"] },
     { word: "musician", categories: ["profession"] },
     { word: "nail", categories: ["thing"] },
     { word: "napkin", categories: ["thing"] },
