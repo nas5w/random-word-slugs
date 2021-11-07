@@ -118,7 +118,11 @@ Noun Categories:
 - food
 - health
 - media
-- peopl
+- people
+- place
+- profession
+- religion
+- science
 - sports
 - technology
 - thing
