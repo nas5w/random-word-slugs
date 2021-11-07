@@ -1,12 +1,13 @@
 {
   "name": "random-word-slugs",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A random word slug generator pre-loaded with many words",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --coverage",
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "populate-readme": "npx ts-node ./scripts/populateReadme.ts"
   },
   "keywords": [
     "random words",
