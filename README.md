@@ -106,6 +106,7 @@ Adjective Categories:
 - size
 - sounds
 - taste
+- time
 - touch
 
 Noun Categories:
@@ -118,10 +119,6 @@ Noun Categories:
 - health
 - media
 - people
-- place
-- profession
-- religion
-- science
 - sports
 - technology
 - thing
