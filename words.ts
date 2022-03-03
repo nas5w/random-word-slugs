@@ -372,7 +372,6 @@ export const wordList = {
     { word: "beefy", categories: ["appearance"] },
     { word: "belligerent", categories: ["personality"] },
     { word: "bent", categories: ["condition"] },
-    { word: "better", categories: ["condition"] },
     { word: "best", categories: ["condition"] },
     { word: "better", categories: ["condition"] },
     { word: "bewildered", categories: ["personality"] },
