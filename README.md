@@ -2,7 +2,8 @@
 
 A handy utility to create those random word slugs (e.g., `generous-pink-biscuit`) you see all over the place.
 
-[![Build Status](https://travis-ci.org/nas5w/random-word-slugs.svg?branch=master)](https://travis-ci.org/nas5w/random-word-slugs) [![Codecov Status](https://codecov.io/gh/nas5w/random-word-slugs/branch/master/graph/badge.svg)](https://codecov.io/gh/nas5w/random-word-slugs/branch/master)
+![run](https://github.com/nas5w/random-word-slugs/actions/workflows/test.yml/badge.svg)
+[![Codecov Status](https://codecov.io/gh/nas5w/random-word-slugs/branch/master/graph/badge.svg)](https://codecov.io/gh/nas5w/random-word-slugs/branch/master)
 
 <hr />
 
