@@ -1,6 +1,6 @@
 {
   "name": "random-word-slugs",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A random word slug generator pre-loaded with many words",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
