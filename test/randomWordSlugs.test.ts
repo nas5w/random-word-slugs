@@ -149,6 +149,35 @@ describe("generateSlug", () => {
     expect(third[0]).toBe(third[0].toLowerCase());
     expect(allNouns.includes(third)).toBe(true);
   });
+  test("allows user to provide custom words", () => {
+    const options: RandomWordOptions<3> = {
+      partsOfSpeech: ["adjective", "adjective", "noun"],
+      customWords: {
+        adjective: ["custom.happy", "custom.sad"],
+        noun: ["custom.dog", "custom.cat"],
+      },
+      onlyCustomWords: true,
+    };
+    const slug = generateSlug(3, options);
+    const parts = slug.split("-");
+    expect(["custom.happy", "custom.sad"]).toContain(parts[0]);
+    expect(["custom.happy", "custom.sad"]).toContain(parts[1]);
+    expect(["custom.dog", "custom.cat"]).toContain(parts[2]);
+  });
+  test("falls back to random words if no custom words are provided but onlyCustomWords is true", () => {
+    const options: RandomWordOptions<3> = {
+      partsOfSpeech: ["adjective", "adjective", "noun"],
+      onlyCustomWords: true,
+      customWords: {
+        noun: ["custom.dog", "custom.cat"],
+      },
+    };
+    const slug = generateSlug(3, options);
+    const parts = slug.split("-");
+    expect(allAdjectives).toContain(parts[0]);
+    expect(allAdjectives).toContain(parts[1]);
+    expect(["custom.dog", "custom.cat"]).toContain(parts[2]);
+  });
 });
 
 describe("totalUniqueSlugs", () => {

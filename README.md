@@ -161,3 +161,26 @@ console.log(totalSlugs);
 ```
 
 Again, this `1000` is just an example. Importantly, this could help you determine that you're not comfortable with this limited combinatoric space and you can choose to add additional categories.
+
+# Custom Words
+
+You can provide your own custom adjectives and nouns to be used in the slug generation. By default your words will be combined with the default word list. If you want to use **only** your custom words, you can set the `onlyCustomWords` option to `true`. If you set this option to `true` and don't provide any custom words, the function will fall back to the default word lists (based on the `categories` option).
+
+The following example shows how one might use custom words:
+
+```javascript
+import { generateSlug } from "random-word-slugs";
+
+const slug = generateSlug(2, {
+  format: "kebab",
+  partsOfSpeech: ["adjective", "noun"],
+  customWords: {
+    adjective: ["happy", "sad"],
+    noun: ["cat", "dog"],
+  },
+  onlyCustomWords: true,
+});
+
+console.log(slug);
+// "happy-dog"
+```
