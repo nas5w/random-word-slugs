@@ -11,12 +11,14 @@ type Case = "kebab" | "camel" | "title" | "lower" | "sentence";
 
 type Options<T, L extends number> = {
   partsOfSpeech: FixedLengthArray<T, L>;
-  categories: Partial<
-    {
-      [K in PartsOfSpeech]: Categories[K][];
-    }
-  >;
+  categories: Partial<{
+    [K in PartsOfSpeech]: Categories[K][];
+  }>;
   format: Case;
+  customWords: Partial<{
+    [K in PartsOfSpeech]: string[];
+  }>;
+  onlyCustomWords: boolean;
 };
 
 export type RandomWordOptions<N extends number> = Partial<
@@ -32,6 +34,8 @@ export function generateSlug<N extends number>(
     partsOfSpeech: getDefaultPartsOfSpeech(numWords),
     categories: {},
     format: "kebab",
+    customWords: {},
+    onlyCustomWords: false,
   };
   const opts: Options<PartsOfSpeech, typeof numWords> = {
     ...defaultOptions,
@@ -42,10 +46,12 @@ export function generateSlug<N extends number>(
 
   for (let i = 0; i < numWords; i++) {
     const partOfSpeech = opts.partsOfSpeech[i];
-    const candidates = getWordsByCategory(
-      opts.partsOfSpeech[i],
-      opts.categories[partOfSpeech]
-    );
+    const candidates: string[] = opts.customWords[partOfSpeech] || [];
+    if (!opts.onlyCustomWords || candidates.length === 0) {
+      candidates.push(
+        ...getWordsByCategory(partOfSpeech, opts.categories[partOfSpeech])
+      );
+    }
     const rand = candidates[Math.floor(Math.random() * candidates.length)];
     words.push(rand);
   }
