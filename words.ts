@@ -265,7 +265,7 @@ export const wordList = {
     { word: "rocket", categories: ["science"] },
     { word: "room", categories: ["place"] },
     { word: "rose", categories: ["thing"] },
-    { word: "russia", categories: ["place"] },
+    { word: "ukraine", categories: ["place"] },
     { word: "salesclerk", categories: ["people", "business"] },
     { word: "salesmen", categories: ["profession"] },
     { word: "sandwich", categories: ["food"] },
